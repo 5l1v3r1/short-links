@@ -164,3 +164,8 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = 'main:index'
 LOGOUT_REDIRECT_URL = 'main:index'
+
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
