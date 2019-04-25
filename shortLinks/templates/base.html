@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{% endblock %}</title>
+  {% load static %}
+  <link rel="shortcut icon" type="image/svg" href="{% static 'link-solid.ico' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  {% block link %}{% endblock %}
+</head>
+<body>
+  {% block header %}
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="{% url 'main:index' %}" class="brand-logo">ShortLinks</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'main:link-list' %}">My links</a></li>
+              <li><a href="{% url 'users:logout' %}">Logout</a></li>
+            {% else %}
+              <li><a href="{% url 'users:signup' %}">Sign up</a></li>
+              <li><a href="{% url 'users:login' %}">Login</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  {% endblock %}
+
+  {% block content %}
+  {% endblock %}
+
+  {% block footer %}
+  {% endblock %}
+
+  {% block js %}
+    <script src="{% static 'js/jquery-3.4.0.min.js' %}"></script>
+    <script src="{% static 'js/materialize.min.js' %}"></script>
+  {% endblock %}
+</body>
+</html>

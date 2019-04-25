@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Statistics {{ object.origin_link|truncatechars:35 }}{% endblock %}
+
+{% block link %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/chartist.min.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <a class="hide" id="ajaxVisitList" href="{% url 'main:ajax-visit-list' object.pk %}"></a>
+    <h5>Statistic for <a href="{{ object.origin_link }}">{{ object.origin_link|truncatechars:35 }}</a> link</h5>
+    <p>The number of clicks on the link for the all time: <b>{{ object.visit_set.count }}</b></p>
+    <a class="waves-effect waves-light btn-small" href="{% url 'main:link-delete' object.pk %}">Delete</a>
+    <h3>Statistic for the last 14 days</h3>
+  </div>
+
+  <div class="container ct-chart ct-golden-section" id="chart1" style="width: 1000px; height: 400px"></div>
+
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  <script src="{% static 'js/chartist.min.js' %}"></script>
+  <script src="{% static 'js/create-graphics-clicks.js' %}"></script>
+{% endblock %}

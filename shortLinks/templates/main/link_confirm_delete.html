@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Delete {{ object.origin_link|truncatechars:35 }}{% endblock %}
+
+
+{% block content %}
+  <div class="container">
+    <form method="post">
+      {% csrf_token %}
+      <h5>Are you sure you want to delete "{{ object.origin_link|truncatechars:35 }}"?</h5>
+      <button type="submit" class="btn waves-effect waves-light">Confirm</button>
+    </form>
+  </div>
+{% endblock %}

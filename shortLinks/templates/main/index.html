@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Index page{% endblock %}
+
+{% block content %}
+  <div class="container main-box">
+    <h1 class="center">Just put your looong link:)</h1>
+    <form method="post" action="{% url 'main:index' %}" id="urlForm">
+      {% csrf_token %}
+        {{ form.as_p }}
+      <div class="center">
+        <button id="shortenButton" class="btn waves-effect waves-light" type="submit" name="action">Shorten</button>
+      </div>
+    </form>
+    <div class="copy-button center">
+      <button class="btn waves-effect waves-light" id="copyButton" style="display: none">Copy link</button>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  <script type='text/javascript' src="{% static 'js/shorten-link.js' %}"></script>
+{% endblock %}
